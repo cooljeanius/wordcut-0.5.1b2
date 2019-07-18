@@ -6,4 +6,6 @@ config.guess linguist-vendored
 config.sub linguist-vendored
 depcomp linguist-vendored
 install-sh linguist-vendored
+ltmain.sh linguist-vendored
 missing linguist-vendored
+mkinstalldirs linguist-vendored
