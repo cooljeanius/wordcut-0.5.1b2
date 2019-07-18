@@ -1,4 +1,4 @@
-/* 
+/* xmalloc.c
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -58,3 +58,5 @@ xrealloc(void *ptr,size_t size)
     }
     return t;
 }
+
+/* EOF */

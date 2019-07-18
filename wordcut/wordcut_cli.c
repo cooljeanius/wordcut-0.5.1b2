@@ -1,4 +1,4 @@
-/* 
+/* wordcut_cli.c
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -39,6 +39,7 @@
 #include <wordcut/xmalloc.h>
 #include <wordcut/path.h>
 
+/* */
 void usage(void) {
      printf ("usage: wordcut [OPTION...]\n");
      printf ("  -D <dictionary>   specific dictionary file.\n");
@@ -49,6 +50,7 @@ void usage(void) {
      exit(1);
 }
 
+/* */
 int
 main (int argc,char **argv) {
 #define MAXBUF 4096
@@ -141,3 +143,5 @@ main (int argc,char **argv) {
      if(optD) free(dictfile);
      return 0;
 }
+
+/* EOF */

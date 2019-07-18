@@ -1,4 +1,4 @@
-/* 
+/* wordcut.h                                          -*- C -*-
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -51,9 +51,11 @@ typedef struct
     WordcutDict dict;
 } Wordcut; 
 
-int wordcut_init(Wordcut *self,const char *dict_filename);
-void wordcut_cut(Wordcut *self,const char *str,WordcutResult *result);
-void wordcut_close(Wordcut *self);
-void wordcut_result_close(WordcutResult *self);
+int wordcut_init(Wordcut *selfthing, const char *dict_filename);
+void wordcut_cut(Wordcut *selfthing, const char *str,WordcutResult *result);
+void wordcut_close(Wordcut *selfthing);
+void wordcut_result_close(WordcutResult *selfthing);
 
-#endif
+#endif /* !__WORDCUT_H__ */
+
+/* EOF */

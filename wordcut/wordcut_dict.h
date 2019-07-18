@@ -1,4 +1,4 @@
-/* 
+/* wordcut_dict.h                                            -*- C -*-
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -35,8 +35,9 @@
 
 #ifndef __WORDCUT_DICT_H__
 #define __WORDCUT_DICT_H__
-#include<stdint.h>
-#include<stdlib.h>
+
+#include <stdint.h>
+#include <stdlib.h>
 
 typedef struct {
     size_t size;
@@ -53,9 +54,11 @@ typedef struct {
 #define WORDCUT_DICT_WALK_OK         2
 #define WORDCUT_DICT_WALK_COMPLETE   3
 
-int wordcut_dict_init(WordcutDict *self,const char *filename); 
-void wordcut_dict_close(WordcutDict *self);
-void wordcut_dict_node(WordcutDictNode *self,WordcutDict *dict);
-int wordcut_dict_walk(WordcutDictNode *node,unsigned char key);
+int wordcut_dict_init(WordcutDict *selfthing, const char *filename); 
+void wordcut_dict_close(WordcutDict *selfthing);
+void wordcut_dict_node(WordcutDictNode *selfthing, WordcutDict *dict);
+int wordcut_dict_walk(WordcutDictNode *node, unsigned char key);
 
-#endif
+#endif /* !__WORDCUT_DICT_H__ */
+
+/* EOF */

@@ -1,4 +1,4 @@
-/* 
+/* wordcut_dict.c
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -31,8 +31,8 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include <stdio.h>
 
+#include <stdio.h>
 
 #include <string.h>
 #include <assert.h>
@@ -41,6 +41,7 @@
 #include <sys/stat.h>
 #include <wordcut/wordcut_dict.h>
 
+/* */
 int wordcut_dict_init(WordcutDict *self,const char *filename) {
     struct stat st;
     uint8_t *data;
@@ -51,7 +52,7 @@ int wordcut_dict_init(WordcutDict *self,const char *filename) {
     fp=fopen(filename,"r");
 
     if (!fp) {
-        fprintf(stderr,"Can't open dictionary file\n");
+        fprintf(stderr,"Cannot open dictionary file\n");
         exit(-1);
     }
 
@@ -67,10 +68,12 @@ int wordcut_dict_init(WordcutDict *self,const char *filename) {
     return 0;
 }
 
+/* */
 void wordcut_dict_close(WordcutDict *self) {
     free(self->data);
 }
 
+/* */
 void wordcut_dict_node(WordcutDictNode *self,WordcutDict *dict) {
     self->p1=1;
     self->p2=0;
@@ -79,6 +82,7 @@ void wordcut_dict_node(WordcutDictNode *self,WordcutDict *dict) {
     self->size=self->data[2];
 }
 
+/* */
 int wordcut_dict_walk(WordcutDictNode *node,unsigned char key) {
     uint8_t *data=node->data;
     int p1=node->p1,p2=node->p2;
@@ -126,7 +130,5 @@ int wordcut_dict_walk(WordcutDictNode *node,unsigned char key) {
         return WORDCUT_DICT_WALK_FAIL;
     }
 }
-
-
 
 /* EOF */

@@ -4,12 +4,13 @@ dnl# Process this file with autoconf to produce a configure script.
 AC_INIT([wordcut],[0.5.1b2],[virasj@users.sourceforge.net])
 AC_CONFIG_SRCDIR([wordcut/wordcut_mkdict.c])
 AC_CONFIG_MACRO_DIRS([m4])
-AM_INIT_AUTOMAKE([gnu])
+AM_INIT_AUTOMAKE([gnu 1.3])
 AC_SUBST([VERSION])dnl
 
 dnl# Checks for programs.
 AC_DEFUN([AC_REQUIRE_PROGS],[
   AC_REQUIRE([AM_PROG_AR])dnl
+  AC_REQUIRE([AC_PROG_AWK])dnl
   AC_REQUIRE([AC_PROG_CC])dnl
   AC_REQUIRE([AC_PROG_CPP])dnl
   AC_REQUIRE([AC_PROG_CXX])dnl
@@ -21,6 +22,7 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 LT_INIT
 LT_LANG([C])dnl
+LT_PREREQ([1.2d])dnl
 
 dnl# Checks for header files.
 AC_CHECK_HEADERS([fcntl.h])dnl
@@ -36,6 +38,7 @@ dnl# Checks for library functions.
 AC_FUNC_ALLOCA
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
+AC_FUNC_STAT
 AC_CHECK_FUNCS([bzero memset])dnl
 
 dnl# Output.

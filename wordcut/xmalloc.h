@@ -1,4 +1,4 @@
-/* 
+/* xmalloc.h
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -33,10 +33,10 @@
  */
 
 
-
 #ifndef __XMALLOC_H__
 #define __XMALLOC_H__
 extern void *xmalloc(size_t size);
 extern void *xrealloc(void *ptr, size_t size);
-#endif
+#endif /* !__XMALLOC_H__ */
 
+/* EOF */

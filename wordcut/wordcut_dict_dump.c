@@ -1,12 +1,14 @@
-#include<wordcut/wordcut_dict.h>
-#include<stdio.h>
+/* wordcut_dict_dump.c */
+
+#include <wordcut/wordcut_dict.h>
+#include <stdio.h>
 
 static char dump_buffer[1000];
 
+/* */
 static void dump_(uint8_t *data,int p,int c) {
-    uint8_t header=data[p],size;
+    uint8_t header=data[p],size = 0U;
     int i;
-
 
     printf ("!!! p=%d header=%d size=%d\n",p,header,size); 
         
@@ -39,13 +41,14 @@ static void dump_(uint8_t *data,int p,int c) {
     }
 }
 
+/* */
 void
 wordcut_dict_dump(WordcutDict *dict)
 {
     dump_(dict->data,1,0);
 }
 
-
+/* */
 int
 main (int argc,char** argv) {
     WordcutDict dict;
@@ -66,3 +69,5 @@ main (int argc,char** argv) {
     
     return 0;
 }
+
+/* EOF */

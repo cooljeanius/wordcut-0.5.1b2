@@ -1,0 +1,17 @@
+*.gz
+Makefile
+*.cache
+*.log
+*.status
+libtool
+wordcut.pc
+*/*.o
+*/*.lo
+*/*.dSYM
+*/.deps/*
+*/.libs/*
+*.la
+wordcut/path.h
+wordcut/wordcut
+wordcut/wordcut_dict_dump
+wordcut/wordcut_mkdict

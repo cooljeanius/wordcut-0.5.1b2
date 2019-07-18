@@ -1,4 +1,4 @@
-/* 
+/* wordcut_mkdict.c
  *
  * Copyright (C) 2003 Vee Satayamas
  * All rights reserved.
@@ -31,6 +31,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -60,7 +61,7 @@ TrieNode *root;
 
 int verbose=0;
 
-
+/* */
 TrieNode* new_trienode() {
     TrieNode *tmp;
     tmp=malloc(sizeof(TrieNode));
@@ -73,10 +74,12 @@ TrieNode* new_trienode() {
     return tmp;
 }
 
+/* */
 void trie_init() {
     root=new_trienode();
-};
+}
 
+/* */
 LinkTab* new_linktab() {
     LinkTab *tmp;
     tmp=malloc(sizeof(LinkTab));
@@ -89,6 +92,7 @@ LinkTab* new_linktab() {
     return tmp;
 }   
 
+/* */
 void trie_add(const char *str) {
     uint8_t *key=(uint8_t *)str , *i;    
     TrieNode *node=root;
@@ -109,6 +113,7 @@ void trie_add(const char *str) {
     node->complete=1;
 }
 
+/* */
 void 
 load_dict(const char* filename) 
 {
@@ -131,6 +136,7 @@ load_dict(const char* filename)
 
 char dump_buffer[1024];
 
+/* */
 void 
 dump_(TrieNode *node,int c) 
 {
@@ -158,6 +164,7 @@ dump_(TrieNode *node,int c)
     }
 }
 
+/* */
 void dump() {
     dump_(root,0);
 }
@@ -169,7 +176,7 @@ uint8_t outb[OUTSIZE];
 
 #define LINK_SIZE 3
 
-
+/* */
 unsigned int encode_(TrieNode *node,int start) {
     
     int cpos;
@@ -198,7 +205,7 @@ unsigned int encode_(TrieNode *node,int start) {
         /* skip data */
         cpos=cpos+4;
     }
-#endif
+#endif /* ENABLE_DATA */
 
     if (node->linktab==NULL || node->linktab->size==0) {
         if (verbose) printf ("!!! NULL NODE\n");
@@ -297,15 +304,17 @@ unsigned int encode_(TrieNode *node,int start) {
     }
 }
 
+/* */
 void encode(int *size) {
     *size=encode_(root,1);
 }
 
+/* */
 int main (int argc,char** argv) {
     int size,fd;
     char *fn1,*fn2;
     size_t ret,x=0;
-	 FILE *fp;
+	FILE *fp;
 
     
     if (argc<3) {
@@ -329,22 +338,25 @@ int main (int argc,char** argv) {
     
     trie_init();
     load_dict(fn1);
-    /* dump();
-       printf ("\n"); */
+#ifdef DEBUG_WORDCUT
+    dump();
+	printf ("\n");
+#endif /* DEBUG_WORDCUT */
     
     encode(&size);
     
-    /* printf ("Size = %d\n",size); */
-/*
+#ifdef DEBUG_WORDCUT
+    printf ("Size = %d\n",size);
+
     for(i=0;i<size;i++) {
         printf ("#%d/%d ",i,outb[i]);
     }
     printf ("\n");
-*/
+#endif /* DEBUG_WORDCUT */
   
     fp=fopen(fn2,"w");
     if (!fp) {
-        fprintf (stderr,"%s:%d: Can't open file %s\n",__FILE__,__LINE__,fn2);
+        fprintf (stderr,"%s:%d: Cannot open file %s\n",__FILE__,__LINE__,fn2);
         exit(1);
     }
 
@@ -355,3 +367,5 @@ int main (int argc,char** argv) {
     fclose(fp);
     return 0;
 }
+
+/* EOF */
