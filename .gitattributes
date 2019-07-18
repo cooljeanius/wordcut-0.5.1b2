@@ -9,3 +9,5 @@ install-sh linguist-vendored
 ltmain.sh linguist-vendored
 missing linguist-vendored
 mkinstalldirs linguist-vendored
+Makefile.in linguist-vendored
+*/Makefile.in linguist-vendored
