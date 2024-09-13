@@ -18,6 +18,21 @@ AC_DEFUN([AC_REQUIRE_PROGS],[
   AC_REQUIRE([AC_PROG_RANLIB])dnl
 ])dnl
 AC_REQUIRE_PROGS
+if test "x${AR}" = "x"; then
+  test -z "${AR}" || unset AR
+  AC_CHECK_TOOLS([AR],[ar gar])dnl
+  ## might want to switch around these checks...
+  if test "x${ac_cv_prog_AR}" = "x"; then
+    test -z "${ac_cv_prog_AR}" || unset ac_cv_prog_AR
+    m4_ifdef([AC_PROG_AR],[
+      AC_PROG_AR
+    ],[
+      test -x "`which ar`" && echo "first ar in path is `which ar`"
+    ])
+  fi
+else
+  test -n "${AR}" && export AR
+fi
 AC_PROG_INSTALL
 AC_PROG_LN_S
 LT_INIT
@@ -26,6 +41,15 @@ LT_PREREQ([1.2d])dnl
 
 dnl# Checks for header files.
 AC_CHECK_HEADERS([fcntl.h])dnl
+
+if test "x${ac_cv_header_stdint_h}" = "x"; then
+  test -z "${ac_cv_header_stdint_h}" || unset ac_cv_header_stdint_h
+  AC_CHECK_HEADERS([stdint.h]) # (keep autoscan happy)
+fi
+if test "x${ac_cv_header_unistd_h}" = "x"; then
+  test -z "${ac_cv_header_unistd_h}" || unset ac_cv_header_unistd_h
+  AC_CHECK_HEADERS([unistd.h]) # (keep autoscan happy)
+fi
 
 dnl# Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
