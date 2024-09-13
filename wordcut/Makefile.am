@@ -18,4 +18,5 @@ wordcut_dict_dump_LDADD=libwordcut.la
 EXTRA_DISTS=path.h.in
 
 distclean-local:
+	-rm -rfv .deps || rmdir .deps
 	-rm -rfv *.dSYM || rmdir *.dSYM

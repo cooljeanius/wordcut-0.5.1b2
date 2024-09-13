@@ -5,6 +5,7 @@ AC_INIT([wordcut],[0.5.1b2],[virasj@users.sourceforge.net])
 AC_CONFIG_SRCDIR([wordcut/wordcut_mkdict.c])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([gnu 1.3])
+AM_MAINTAINER_MODE
 AC_SUBST([VERSION])dnl
 
 dnl# Checks for programs.
